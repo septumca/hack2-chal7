@@ -1,0 +1,5 @@
+GET http://localhost:7000/items HTTP/1.1
+
+###
+
+GET http://localhost:7000/items/1 HTTP/1.1
