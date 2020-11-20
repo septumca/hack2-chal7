@@ -9,6 +9,7 @@ import {
 import Home from '../pages/Home/Home';
 import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
+import FeedPage from '../pages/FeedPage';
 
 export default function AppRouter() {
   return (
@@ -22,6 +23,9 @@ export default function AppRouter() {
         <Switch>
           <Route exact path='/items/:itemId'>
             <Item />
+          </Route>
+          <Route exact path='/feedpage'>
+            <FeedPage />
           </Route>
           <Route exact path='/items'>
             <Items />
