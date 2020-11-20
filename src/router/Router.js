@@ -9,17 +9,12 @@ import {
 import Home from '../pages/Home/Home';
 import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
-import FeedPage from '../pages/FeedPage';
+import FeedPage from '../components/FeedPage';
 
 export default function AppRouter() {
   return (
     <Router>
       <div>
-        <nav>
-          <div><Link to='/'>Home</Link></div>
-          <div><Link to='/items'>Items</Link></div>
-        </nav>
-
         <Switch>
           <Route exact path='/items/:itemId'>
             <Item />
