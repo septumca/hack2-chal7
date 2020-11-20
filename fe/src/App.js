@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import ItemProvider from './context/ItemProvider';
 import AppRouter from './router/Router';
