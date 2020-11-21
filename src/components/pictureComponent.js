@@ -3,14 +3,10 @@ import image2 from '../pictures/Adventure.jpg';
 import image4 from '../pictures/frankfurt-germany.jpg';
 import image5 from '../pictures/marburg-lahn.jpg';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Link, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
