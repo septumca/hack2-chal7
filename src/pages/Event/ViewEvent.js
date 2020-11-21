@@ -128,18 +128,7 @@ const ViewEvent = () => {
       {!userIsAlreadyParticipating && <Grid item xs={11} style={{ paddingTop: '10px'}}>
         <Button disabled={selectedAbilities.length === 0} type="submit" variant="contained" color="primary" onClick={handleSubmitParticipation}>Hilfe anbieten</Button>
       </Grid>}
-      {userIsAlreadyParticipating && ownerInfo !== null && <Grid item xs={11} style={{ paddingTop: '10px'}}>
-        <div><Typography variant="h6">Organisator</Typography></div>
-        <div><Typography>{ownerInfo.name}</Typography></div>
-        {Array.isArray(ownerInfo.contacts) && ownerInfo.contacts.map(con => {
-          return (<div style={{ display: 'inline-flex'}}>
-            {con.type === 'Telefon' && <LocalPhoneIcon />}
-            {con.type === 'Email' && <EmailIcon />}
-            <Typography style={{ paddingLeft: '10px' }}>{con.contact}</Typography>
-          </div>);
-        })}
-
-      </Grid>}
+      {userIsAlreadyParticipating && ownerInfo !== null && <ViewContacts/>}
     </Grid>
     </div>
   );
