@@ -7,6 +7,7 @@ import ItemContext from '../../context/ItemContext';
 import TopBar from '../../components/TopBar';
 import { createAbility, createEvent } from '../../services/services';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateEvent = () => {
   const { abilities, loadAbilities, user }  = useContext(ItemContext);
+  const history = useHistory();
   const classes = useStyles();
   const [name, setName] = useState('');
   const handleChangeName = event => {
@@ -101,6 +103,7 @@ const CreateEvent = () => {
     };
 
     const result = await createEvent(payload);
+    history.push('/feedpage');
   }
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -123,7 +126,7 @@ const CreateEvent = () => {
         </Grid>
         <Grid item xs={12}>
           <div className={classes.textField}>
-            <TextField fullWidth={true} id="description" label="Was wurderst du beschreiben?" value={description} onChange={handleChangeDescription} />
+            <TextField multiline rowsMax={4} fullWidth={true} id="description" label="Was wurderst du beschreiben?" value={description} onChange={handleChangeDescription} />
           </div>
         </Grid>
         <Grid item xs={6}>
@@ -141,7 +144,7 @@ const CreateEvent = () => {
           <Autocomplete
           options={abilities}
           getOptionLabel={(ability) => ability.value}
-          onChange={handleSelectAbility} 
+          onChange={handleSelectAbility}
           selectOnFocus
           clearOnBlur
           handleHomeEndKeys

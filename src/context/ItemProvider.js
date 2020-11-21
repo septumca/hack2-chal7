@@ -20,7 +20,7 @@ export default function ItemProvider({ children }) {
             }
         }
         load();
-    }, [user, setUser, serviceCall])
+    }, [user, setUser, serviceCall]);
 
     const loadEvents = useCallback(async () => {
         if(user === null) {
