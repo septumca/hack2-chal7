@@ -5,15 +5,12 @@ export const getAllItems = async () => {
   return data;
 }
 
-export const getItemData = async (id=null) => {
-  const { data } = await axios.get(`${process.env.REACT_APP_BE_BASE}/items/${id}`);
+export const getAccount = async (id=null) => {
+  console.info('getAccountById', id);
+  const { data } = await axios.get(`${process.env.REACT_APP_BE_BASE}/accounts/${id}`);
   return data;
 }
 
-export const getAccounts = async (name=null) => {
-  const { data } = await axios.get(`${process.env.REACT_APP_BE_BASE}/accounts/${name}`);
-  return data;
-}
 
 export const getAbilities = async () => {
   const { data } = await axios.get(`${process.env.REACT_APP_BE_BASE}/abilities`);
