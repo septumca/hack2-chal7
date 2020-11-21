@@ -42,7 +42,10 @@ export default function AppRouter() {
           </Route>
           <Route exact path='/profile'>
             <Profile />
-          </Route>
+          </Route>'
+          <Route exact path='/profile/skills'>
+            <SkillSettings />
+          </Route>'
           <Route path='/'>
             <Home />
           </Route>
