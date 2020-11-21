@@ -41,10 +41,9 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
     width: "100%",
     position: 'relative',
-    minHeight: 200,
+
   },
   fab: {
     position: 'absolute',
@@ -56,8 +55,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: green[500],
     '&:hover': {
       backgroundColor: green[600],
-    },
+    }, 
   },
+  menu: {
+    paddingDown: '10px'
+  }
 }));
 
 export default function NavBar() {
@@ -72,7 +74,7 @@ export default function NavBar() {
   return (
     <div className={classes.root}>
     <Grid container spacing={12}>
-        <AppBar position="static" color="default">
+        <AppBar className={classes.menu} position="static" color="default">
             <Tabs
             value={value}
             onChange={handleChange}
