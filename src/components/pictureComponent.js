@@ -25,7 +25,8 @@ const useStyles = makeStyles({
     height: 250,
     margin: 'auto',
     backgroundColor: 'wheat',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    paddingLeft: "80px"
   },
   media: {
     height: 0,
@@ -34,21 +35,21 @@ const useStyles = makeStyles({
     backgroundcolor: 'black'
   },
   overlay: {
-    position: 'absolute',
-    top: '150px',
-    left: '20px',
+    position: 'relative',
     color: 'black',
-
+    alignContent: 'center',
+    padding: "40px 40px"
   },
   addButon: {
     color: 'black',
-    height: '40px',
-    width: '40px'
+    height: '50px',
+    width: '50px',
+    marginRight: '50px'
   },
   paramStyle: {
-    fontweight: 'bold',
-    margin: ''
-  }
+    fontweight: 'bold'
+  },
+
 });
 
 
@@ -63,19 +64,26 @@ export default function PictureComponent() {
     history.push(`/event/${event.event_id}`)
   }
 
+  console.log(events);
   return (
     <div>
       {events.map((tile) => (
+        
         <Grid key={tile.event_id} container spacing={3}>
-        <Grid item xs={1} ></Grid>
         <Grid item xs={10} onClick={() => onTileClick(tile)} >
           <div className={classes.root}>
           <div>
-            <div style={{position: 'absolute'}} className={classes.overlay}>
+            <img style={{position: 'absolute'}}
+              src={image3}
+              alt={tile.name}
+              className={classes.media}
+            />
+
+            <div className={classes.overlay}>
               <Typography className={classes.paramStyle} variant="h5" >
                   {tile.name}
               </Typography>
-                <Typography className={"fontweight: 'bold'"} variant="body2" color="textSecondary" component="p">
+                <Typography className={classes.paramStyle} variant="body1" color="textSecondary" component="p">
                     {tile.description}
                 </Typography>
             </div>
