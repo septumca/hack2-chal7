@@ -110,7 +110,7 @@ const CreateEvent = () => {
   return (
     <div>
     <Grid container spacing={1}>
-      <TopBar label='Initiaive starten'/>
+      <TopBar label='Initiative starten' backLinkTo="/feedpage" />
       <Grid container item spacing={3}>
         <Grid item xs={12}>
           <div className={classes.textField}>
