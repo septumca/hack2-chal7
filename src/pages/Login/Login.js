@@ -70,6 +70,7 @@ export default function Login() {
     if(userLogin !== '') {
       const result = await serviceCall(login(userLogin));
       if(result !== null) {
+        localStorage.setItem('user-login', result.name);
         setUser(result);
         history.push('/feedpage');
       }

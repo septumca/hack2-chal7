@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import NavBar from './NavBar';
@@ -7,17 +7,22 @@ import Grid from '@material-ui/core/Grid';
 import TopAppBar from './TopAppBar';
 import PictureComponent from '../../components/pictureComponent';
 import BottomAppBar from '../../components/BottomAppBar';
+import ItemContext from '../../context/ItemContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
- 
+
 }));
 
 const FeedPage = () => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { loadEvents } = useContext(ItemContext);
+
+  useEffect(() => {
+    loadEvents();
+  }, [loadEvents]);
 
   return (
     <div>
@@ -36,4 +41,4 @@ const FeedPage = () => {
 
 
 
-export default FeedPage; 
+export default FeedPage;

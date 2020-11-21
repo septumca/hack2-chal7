@@ -41,6 +41,11 @@ export const getEvents = async (id=null) => {
   return data;
 }
 
+export const getEvent = async (id=null) => {
+  const { data } = await axios.get(`${process.env.REACT_APP_BE_BASE}/Events/${id}`);
+  return data;
+}
+
 export const login = async (name) => {
   const { status, data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts/login`, { name });
   if(status === 401) {

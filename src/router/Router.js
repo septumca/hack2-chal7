@@ -13,6 +13,7 @@ import Login from '../pages/Login/Login';
 import FeedPage from '../pages/Feedpage/FeedPage';
 import CreateEvent from '../pages/Event/CreateEvent';
 import Profile from '../pages/Profile/Profile';
+import ViewEvent from '../pages/Event/ViewEvent';
 
 
 export default function AppRouter() {
@@ -32,6 +33,9 @@ export default function AppRouter() {
           </Route>
           <Route exact path='/event/new'>
             <CreateEvent />
+          </Route>
+          <Route exact path='/event/:id'>
+            <ViewEvent />
           </Route>
           <Route exact path='/login'>
             <Login />
