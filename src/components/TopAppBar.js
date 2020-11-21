@@ -7,7 +7,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Typography } from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Grid from '@material-ui/core/Grid';
-
+import FilterListIcon from '@material-ui/icons/FilterList';
+import SearchIcon from '@material-ui/icons/Search';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles(() => ({
   text: {
     fontWeight: '600',
@@ -16,7 +18,11 @@ const useStyles = makeStyles(() => ({
   },
   root: {
     flexGrow: 1,
+    marginTop: '10px'
   },
+  icons: {
+    paddingRight: '8px'
+  }
 }));
 
 const MenuBar = ({label=''}) => {
@@ -30,34 +36,40 @@ const MenuBar = ({label=''}) => {
       const handleClose = () => {
         setAnchorEl(null);
       };
-    
-    return (
+
+      const handleSeach = () => {
         
-    <Grid container className={classes.root} spacing={2}>
-        <Grid item xs={4}>
-          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <MenuIcon />
-          </Button>
-        </Grid>
-      
-        <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
-        <Grid item xs={4}>
-          <Typography variant="h6" className={classes.text} >{label2}</Typography>
-        </Grid>
-        
-        <Grid item xs={4}>
-          <NotificationsIcon/>
-        </Grid>
+      }
+
+    return ( 
+  <Grid container className={classes.root} spacing={2}>
+    <Grid item xs={2}>
+      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        <MenuIcon />
+      </Button>
+    </Grid>
+    <Menu
+      id="simple-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+      >
+      <MenuItem onClick={handleClose}>Profile</MenuItem>
+      <MenuItem onClick={handleClose}>My account</MenuItem>
+      <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>        
+      <Grid item xs={6}>
+      <Typography variant="h6" className={classes.text} >{label2}</Typography>
+      </Grid>
+      <Grid  item xs={4}>
+        <NotificationsIcon className={classes.icons}>  </NotificationsIcon>
+        <FilterListIcon className={classes.icons} />
+        <Button> 
+            <SearchIcon className={classes.icons} onClick={handleSeach}/> 
+        </Button>
+      <MoreVertIcon className={classes.icons} />
+      </Grid>
     </Grid>
     )
 }
