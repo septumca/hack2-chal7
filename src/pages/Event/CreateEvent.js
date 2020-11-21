@@ -6,6 +6,7 @@ import { Chip, Popover, TextField, Typography } from '@material-ui/core';
 import ItemContext from '../../context/ItemContext';
 import TopBar from '../../components/TopBar';
 import { createAbility, createEvent } from '../../services/services';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,8 +73,10 @@ const CreateEvent = () => {
     setFilteredAbilities(filtered)
   }, [abilityFilter, setFilteredAbilities, abilities]);
 
-  const handleSelectAbility = (ability) => {
-    setSelectedAbilities(sa => [...sa, ability]);
+  const handleSelectAbility = (__, value) => {
+    if (value) {
+     value.ability_id ? setSelectedAbilities(sa => [...sa, value]) : handleCreateAbility(value);
+    }
   }
 
   const handleDeselectAbility = (i) => {
@@ -82,8 +85,9 @@ const CreateEvent = () => {
 
   const handleCreateAbility = async (value) => {
     const result = await createAbility({ value });
+    const dump = null;
     await loadAbilities();
-    handleSelectAbility(result);
+    handleSelectAbility(dump, result);
   };
 
   const handleCreateEvent = async () => {
@@ -134,23 +138,18 @@ const CreateEvent = () => {
         </Grid>
         <Grid item xs={12}>
           <div className={classes.textField}>
-            <TextField autoComplete="off" fullWidth={true} onChange={handleChangeAbilityFilter} id="abilityFilter" label="Webei brauchst do Hilfe" value={abilityFilter} />
-            {/* <Popover
-              anchorEl={anchorEl}
-              open={abilityFilter !== ""}
-              id={id}
-              onClose={handleClosePopover}
-            > */}
-            <div style={{maxHeight: '150px'}}>
-              {filteredAbilities !== null && filteredAbilities.length > 0 && filteredAbilities.map(a => <Typography style={{cursor: 'click', textAlign: 'left'}} onClick={() => handleSelectAbility(a)} key={a.ability_id}>{a.value}</Typography>)}
-              {filteredAbilities !== null && filteredAbilities.length === 0 && <div style={{ display: 'flex', textAlign: 'left'}}>
-                <Typography>{abilityFilter}</Typography>
-                <Button style={{marginLeft: 'auto'}} onClick={() => handleCreateAbility(abilityFilter)}>Hinzufugen</Button>
-              </div>}
-            </div>
+          <Autocomplete
+          options={abilities}
+          getOptionLabel={(ability) => ability.value}
+          onChange={handleSelectAbility} 
+          selectOnFocus
+          clearOnBlur
+          handleHomeEndKeys
+          freeSolo
+      renderInput={(params) => <TextField {...params} label="Webei brauchst du Hilfe" required/>}
+      fullWidth={true}
+    />
           </div>
-
-          {/* </Popover> */}
         </Grid>
         <Grid item xs={12}>
           {selectedAbilities.map((a, i) => <Chip
