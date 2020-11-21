@@ -6,6 +6,7 @@ import image5 from '../pictures/marburg-lahn.jpg';
 
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -13,6 +14,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +36,11 @@ const useStyles = makeStyles({
     left: '20px',
     color: 'black',
     
+  },
+  addButon: {
+    color: 'black',
+    height: '40px',
+    width: '40px'
   }
 });
 
@@ -85,12 +93,12 @@ export default function PictureComponent() {
               className={classes.media}
             />
             <CardContent className={classes.overlay}>
-              <Typography   className= {"fontweight: 'bold'"}  gutterBottom variant="h5" component="h2">
-                Event Titel
-          </Typography>
-              <Typography  className= {"fontweight: 'bold'" }variant="body2" color="textSecondary" component="p">
-                Veranstalter:innen
+              <Typography className= {"fontweight: 'bold'"}   variant="h5" component="h2">
+                  Event Titel
               </Typography>
+                <Typography  className={"fontweight: 'bold'" } variant="body2" color="textSecondary" component="p">
+                    Veranstalter:innen
+                </Typography>
             </CardContent>
           
           </CardActionArea>
@@ -101,6 +109,9 @@ export default function PictureComponent() {
         <Grid container item xs={1} spacing={3}></Grid>
         </Grid>
       ))}
+        <IconButton aria-label="add event" component={Link} to="/event/new">
+           <AddCircleIcon className={classes.addButon}   />
+          </IconButton> 
     </div>
   );
 }

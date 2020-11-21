@@ -8,21 +8,12 @@ import TopAppBar from './TopAppBar';
 import PictureComponent from '../../components/pictureComponent';
 import BottomAppBar from '../../components/BottomAppBar';
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: '#FAEBD7',
-  },
+ 
 }));
-
-
-
 
 const FeedPage = () => {
   const classes = useStyles();
@@ -30,7 +21,7 @@ const FeedPage = () => {
 
   return (
     <div>
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
         <TopAppBar label='Feed'> </TopAppBar>
         <NavBar ></NavBar>
       </Grid>

@@ -20,18 +20,26 @@ export const getAbilities = async () => {
   return data;
 }
 
-export const postAccount = (data) => {
-  let payload = { ...data };
-   return axios.post(`${process.env.REACT_APP_BE_BASE}/accounts`, payload).then(({ status, data }) => {
-    console.log(data);
-    return {...data, status: data.status}
-  });
+export const postAccount = async (payload) => {
+  const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts`, payload);
+  return data;
 }
 
-export const postAbilities = (data) => {
-  let payload = { ...data };
-   return axios.post(`${process.env.REACT_APP_BE_BASE}/abilities`, payload).then(({ status, data }) => {
-    console.log(data);
-    return {...data, status: data.status}
-  });
+export const createAbility = async (payload) => {
+  const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/abilities`, payload);
+  return data;
+}
+
+
+export const createEvent = async (payload) => {
+  const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/events`, payload);
+  return data;
+}
+
+export const login = async (name) => {
+  const { status, data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts/login`, { name });
+  if(status === 401) {
+    return null;
+  }
+  return data;
 }

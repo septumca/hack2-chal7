@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField } from '@material-ui/core';
 import clsx from 'clsx';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 import Logo from '../../components/Logo';
 
@@ -15,6 +15,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import ItemContext from '../../context/ItemContext';
+import { login } from '../../services/services';
+import { useServiceCall } from '../../services/hooks';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +40,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Login() {
+  const serviceCall = useServiceCall();
   const classes = useStyles();
+  const [userLogin, setUserLogin] = useState('');
+  const history = useHistory();
+  const { setUser }  = useContext(ItemContext);
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -59,14 +66,20 @@ export default function Login() {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
-    // @todo
+  const handleLogin = async (event) => {
+    if(userLogin !== '') {
+      const result = await serviceCall(login(userLogin));
+      if(result !== null) {
+        setUser(result);
+        history.push('/feedpage');
+      }
+    }
   };
   return (
     <div className={clsx(classes.page)}>
       <Logo />
-      <form onSubmit={handleSubmit} className={clsx(classes.form)}>
-        <TextField label="Email" className={clsx(classes.margin, classes.textField)} />
+      <div  className={clsx(classes.form)}>
+        <TextField label="Login" value={userLogin} onChange={(event) => setUserLogin(event.target.value)} className={clsx(classes.margin, classes.textField)} />
         <FormControl
           className={clsx(classes.margin, classes.textField)}
         >
@@ -89,12 +102,10 @@ export default function Login() {
               }
             />
           </FormControl>
-          <Link to='/feedpage'>
-          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  component={Link} to="/feedpage">
+          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  onClick={handleLogin}>
             EINLOGGEN
           </Button>
-          </Link>
-        </form>
+        </div>
       </div>
   );
 }
