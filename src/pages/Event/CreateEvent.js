@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const CreateEvent = () => {
-  const { abilities, loadAbilities }  = useContext(ItemContext);
+  const { abilities, loadAbilities, user }  = useContext(ItemContext);
   const classes = useStyles();
   const [name, setName] = useState('');
   const handleChangeName = event => {
@@ -92,7 +92,7 @@ const CreateEvent = () => {
       description,
       datetime,
       location,
-      account_id: '1e18e664-8923-4876-83c3-7942a109f918', //TODO change to currently logged in user
+      account_id: user.account_id, //TODO change to currently logged in user
       abilities: selectedAbilities.map(a => ({ ability_id: a.ability_id, state: 1 }))
     };
 

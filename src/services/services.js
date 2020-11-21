@@ -43,3 +43,8 @@ export const login = async (name) => {
   }
   return data;
 }
+
+export const createProfile = async (userData) => {
+  const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts`, userData);
+  return data;
+}
