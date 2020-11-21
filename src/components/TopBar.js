@@ -7,11 +7,14 @@ const useStyles = makeStyles(() => ({
   text: {
     fontWeight: '600',
     fontStyle: 'normal',
-    fontColor: 'Black'
+    fontColor: 'Black',
+    textAlign: 'left'
   },
   root: {
     flexGrow: 1,
-    marginTop: '10px'
+    marginTop: '10px',
+    marginBottom: '10px',
+    borderBottom: '2px solid gray'
   },
   icons: {
     paddingRight: '8px'
@@ -33,7 +36,7 @@ const TopBar = ({label=''}) => {
         {/* back arrow could ggo here*/}
       </Grid>
       <Grid item xs={11}>
-      <Typography variant="h6" className={classes.text} >{label}</Typography>
+        <Typography variant="h6" className={classes.text} >{label}</Typography>
       </Grid>
     </Grid>
     )
