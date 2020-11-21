@@ -6,6 +6,7 @@ import { getAbilities } from '../services/services';
 export default function ItemProvider({ children }) {
     const serviceCall = useServiceCall();
     const [ abilities, setAbilities ] = useState(null);
+    const [ user, setUser ] = useState(null);
 
     const loadAbilities = useCallback(async () => {
         const abilitiesResponse = await serviceCall(getAbilities());
@@ -20,7 +21,9 @@ export default function ItemProvider({ children }) {
         <ItemContext.Provider
             value={{
                 abilities,
-                loadAbilities
+                loadAbilities,
+                user,
+                setUser
             }}
         >
             {children}
