@@ -10,7 +10,7 @@ import Home from '../pages/Home/Home';
 import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
 import Login from '../pages/Login/Login';
-import FeedPage from '../components/Feedpage/FeedPage';
+import FeedPage from '../pages/Feedpage/FeedPage';
 import CreateEvent from '../pages/Event/CreateEvent';
 
 

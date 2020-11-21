@@ -5,8 +5,8 @@ import NavBar from './NavBar';
 import Grid from '@material-ui/core/Grid';
 // import MenuIcon from '@material-ui/icons/Menu';
 import TopAppBar from './TopAppBar';
-import PictureComponent from '../PictureComponent';
-import BottomAppBar from '../BottomAppBar';
+import PictureComponent from '../../components/PictureComponent';
+import BottomAppBar from '../../components/BottomAppBar';
 
 
 
