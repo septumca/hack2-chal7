@@ -8,8 +8,6 @@ import TopAppBar from './TopAppBar';
 import PictureComponent from '../../components/pictureComponent';
 import BottomAppBar from '../../components/BottomAppBar';
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -20,9 +18,6 @@ const useStyles = makeStyles((theme) => ({
     color: '#FAEBD7',
   },
 }));
-
-
-
 
 const FeedPage = () => {
   const classes = useStyles();

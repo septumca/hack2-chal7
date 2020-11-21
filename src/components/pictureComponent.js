@@ -86,11 +86,11 @@ export default function PictureComponent() {
             />
             <CardContent className={classes.overlay}>
               <Typography   className= {"fontweight: 'bold'"}  gutterBottom variant="h5" component="h2">
-                Event Titel
-          </Typography>
-              <Typography  className= {"fontweight: 'bold'" }variant="body2" color="textSecondary" component="p">
-                Veranstalter:innen
+                  Event Titel
               </Typography>
+                  <Typography  className= {"fontweight: 'bold'" }variant="body2" color="textSecondary" component="p">
+                    Veranstalter:innen
+                </Typography>
             </CardContent>
           
           </CardActionArea>
