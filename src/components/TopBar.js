@@ -25,19 +25,20 @@ const useStyles = makeStyles(() => ({
 
 }));
 
-const TopBar = ({label=''}) => {
+const TopBar = ({label=''}, props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
 
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={1}>
-
+      <div>{props.child1}</div>
         {/* back arrow could ggo here*/}
       </Grid>
       <Grid item xs={11}>
         <Typography variant="h6" className={classes.text} >{label}</Typography>
       </Grid>
+      <div>{props.child2}</div>
     </Grid>
     )
 }
