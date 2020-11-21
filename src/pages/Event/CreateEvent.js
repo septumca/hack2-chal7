@@ -126,7 +126,7 @@ const CreateEvent = () => {
         </Grid>
         <Grid item xs={12}>
           <div className={classes.textField}>
-            <TextField fullWidth={true} id="description" label="Was wurderst du beschreiben?" value={description} onChange={handleChangeDescription} />
+            <TextField multiline rowsMax={4} fullWidth={true} id="description" label="Was wurderst du beschreiben?" value={description} onChange={handleChangeDescription} />
           </div>
         </Grid>
         <Grid item xs={6}>
