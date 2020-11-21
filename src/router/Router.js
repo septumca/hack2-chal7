@@ -11,6 +11,7 @@ import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
 import Login from '../pages/Login/Login';
 import FeedPage from '../components/Feedpage/FeedPage';
+import CreateEvent from '../pages/Event/CreateEvent';
 
 export default function AppRouter() {
   return (
@@ -26,6 +27,9 @@ export default function AppRouter() {
           </Route>
           <Route exact path='/items'>
             <Items />
+          </Route>
+          <Route exact path='/event/new'>
+            <CreateEvent />
           </Route>
           <Route exact path='/login'>
             <Login />
