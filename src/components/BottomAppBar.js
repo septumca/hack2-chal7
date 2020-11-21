@@ -31,9 +31,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-function BottomAppBar({
-    secondaryContent = null
-}) {
+function BottomAppBar({}) {
     const classes = useStyles();
 
     return (
