@@ -35,3 +35,11 @@ export const createEvent = async (payload) => {
   const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/events`, payload);
   return data;
 }
+
+export const login = async (name) => {
+  const { status, data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts/login`, { name });
+  if(status === 401) {
+    return null;
+  }
+  return data;
+}
