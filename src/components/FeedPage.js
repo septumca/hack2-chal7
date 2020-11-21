@@ -46,7 +46,6 @@ const FeedPage = () => {
   return (
     <div>
     <Grid container spacing={1}>
-    <TopAppBar> </TopAppBar>
     <Grid container item xs={12} spacing={3}>
         <FormRow />
     </Grid>

@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Home() {
+export default function Login() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     amount: '',
@@ -90,7 +90,7 @@ export default function Home() {
             />
           </FormControl>
           <Link to='/feedpage'>
-          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}>
+          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  component={Link} to="/feedpage">
             EINLOGGEN
           </Button>
           </Link>
