@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
   imageClass: {
    width:"10px"
   }
+
   
 }));
 
@@ -42,13 +43,13 @@ const MenuBar = ({label=''}) => {
 
     return ( 
   <Grid container className={classes.root} spacing={2}>
-    <Grid item xs={1}>
+    <Grid item xs={2}>
       <Logo />
     </Grid>
       <Grid item xs={4}>
-      <Typography variant="h6" className={classes.text} >{label}</Typography>
+      <Typography variant="h6" className={classes.text}>{label}</Typography>
       </Grid>
-      <Grid  item xs={6}>
+      <Grid item xs={6}>
         <Button> 
           <FilterListIcon className={classes.icons} />
         </Button> 

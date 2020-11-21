@@ -28,11 +28,7 @@ const FeedPage = () => {
     <div>
     <Grid container spacing={1}>
       <TopAppBar label='Feed'> </TopAppBar>
-      <NavBar ></NavBar>
-      <Grid container item xs={12} spacing={3}>
-    
-    </Grid>
-  
+      <NavBar ></NavBar>  
     </Grid>
     </div>
   );
