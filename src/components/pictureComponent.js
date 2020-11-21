@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import IconButton from '@material-ui/core/IconButton';
-import { getEvents } from '../services/services';
 import ItemContext from '../context/ItemContext';
 
 const image3 = 'https://via.placeholder.com/300x200';
@@ -70,7 +69,7 @@ export default function PictureComponent() {
           <div className={classes.root}>
           <div>
             <img style={{position: 'absolute'}}
-              src={image3}
+              src={tile.img}
               alt={tile.name}
               className={classes.media}
             />
