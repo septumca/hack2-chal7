@@ -9,10 +9,15 @@ import {
 import Home from '../pages/Home/Home';
 import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
+import Login from '../pages/Login/Login';
 import FeedPage from '../components/FeedPage';
+import TopAppBar from '../components/TopAppBar';
+
 
 export default function AppRouter() {
   return (
+    <>
+    <TopAppBar />
     <Router>
       <div>
         <Switch>
@@ -25,11 +30,15 @@ export default function AppRouter() {
           <Route exact path='/items'>
             <Items />
           </Route>
+          <Route exact path='/login'>
+            <Login />
+          </Route>
           <Route path='/'>
             <Home />
           </Route>
         </Switch>
       </div>
     </Router>
+    </>
   );
 }
