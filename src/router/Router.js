@@ -10,6 +10,7 @@ import Home from '../pages/Home/Home';
 import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
 import Login from '../pages/Login/Login';
+import Profile from '../pages/Profile/Profile';
 import FeedPage from '../components/Feedpage/FeedPage';
 
 export default function AppRouter() {
@@ -29,6 +30,9 @@ export default function AppRouter() {
           </Route>
           <Route exact path='/login'>
             <Login />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile />
           </Route>
           <Route path='/'>
             <Home />
