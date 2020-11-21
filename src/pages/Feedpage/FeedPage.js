@@ -21,7 +21,7 @@ const FeedPage = () => {
 
   return (
     <div>
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <TopAppBar label='Feed'> </TopAppBar>
         <NavBar ></NavBar>
       </Grid>
