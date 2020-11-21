@@ -141,7 +141,7 @@ const CreateEvent = () => {
               id={id}
               onClose={handleClosePopover}
             > */}
-            <div style={{maxWidth: '150px'}}>
+            <div style={{maxHeight: '150px'}}>
               {filteredAbilities !== null && filteredAbilities.length > 0 && filteredAbilities.map(a => <Typography style={{cursor: 'click', textAlign: 'left'}} onClick={() => handleSelectAbility(a)} key={a.ability_id}>{a.value}</Typography>)}
               {filteredAbilities !== null && filteredAbilities.length === 0 && <div style={{ display: 'flex', textAlign: 'left'}}>
                 <Typography>{abilityFilter}</Typography>
@@ -162,7 +162,7 @@ const CreateEvent = () => {
           />)}
         </Grid>
         <Grid item xs={12}>
-          <Button className={classes.textField} onClick={handleCreateEvent}>Initiative Starten</Button>
+          <Button type="submit" variant="contained" color="primary" className={classes.textField} onClick={handleCreateEvent}>Initiative Starten</Button>
         </Grid>
       </Grid>
     </Grid>
