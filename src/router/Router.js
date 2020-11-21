@@ -14,6 +14,7 @@ import FeedPage from '../pages/Feedpage/FeedPage';
 import CreateEvent from '../pages/Event/CreateEvent';
 import Profile from '../pages/Profile/Profile';
 import ViewEvent from '../pages/Event/ViewEvent';
+import SkillSettings from '../pages/SkillSettings';
 
 
 export default function AppRouter() {
