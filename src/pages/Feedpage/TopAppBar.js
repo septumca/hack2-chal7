@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SearchIcon from '@material-ui/icons/Search';
-import Logo from '../Logo';
+import Logo from '../../components/Logo';
 const useStyles = makeStyles(() => ({
   text: {
     fontWeight: '600',
