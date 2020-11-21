@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TextField, MenuItem, IconButton, Input } from '@material-ui/core';
 import clsx from 'clsx';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import Logo from '../../components/Logo';
@@ -16,6 +16,9 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import cities from '../../assets/de.json';
+import { useServiceCall } from '../../services/hooks';
+import ItemContext from '../../context/ItemContext';
+import { createProfile } from '../../services/services';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile() {
   const classes = useStyles();
+  const { setUser }  = useContext(ItemContext);
+  const history = useHistory();
+  const callService = useServiceCall();
   const [values, setValues] = React.useState({
     amount: '',
     password: '',
@@ -46,6 +52,10 @@ export default function Profile() {
     weightRange: '',
     showPassword: false,
     disabled: true,
+    email: '',
+    phone: '',
+    name: '',
+    org: ''
   });
 
   const handleChange = (prop) => (event) => {
@@ -60,16 +70,30 @@ export default function Profile() {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
-    // @todo
+  const handleCreateProfile = async (event) => {
+    const { name, phone: contact_phone, email: contact_email, org: organisation } = values;
+    const data = {
+      name,
+      contact_phone,
+      contact_email,
+      organisation,
+      location: 'Frankfurt'
+    };
+
+    const user = await callService(createProfile(data));
+
+    if(user !== null) {
+      setUser(user);
+      history.push('/feedpage');
+    }
   };
 
 
   return (
     <div className={clsx(classes.page)}>
       <Logo />
-      <form onSubmit={handleSubmit} className={clsx(classes.form)}>
-        <TextField label="Name" className={clsx(classes.margin, classes.textField)} />
+      <div className={clsx(classes.form)}>
+        <TextField label="Name" value={values.name} onChange={handleChange('name')} className={clsx(classes.margin, classes.textField)} />
         <FormControl
           className={clsx(classes.margin, classes.textField)}
         >
@@ -96,27 +120,23 @@ export default function Profile() {
 
 
           <Autocomplete
-          options={cities.slice(0,10000)}
-          getOptionLabel={(option) => option.city}
-      renderInput={(params) => <TextField {...params} label="Stadt" required />}
-      className={clsx(classes.margin, classes.textField)} 
-    />
+            options={cities.slice(0,10000)}
+            getOptionLabel={(option) => option.city}
+            renderInput={(params) => <TextField {...params} label="Stadt" required />}
+            className={clsx(classes.margin, classes.textField)}
+          />
 
-          <TextField required label="Betrieb" className={clsx(classes.margin, classes.textField)} />
-          <TextField required label="Industrie" select className={clsx(classes.margin, classes.textField)} />
-          <TextField label="Berufsbezeichnung" className={clsx(classes.margin, classes.textField)} />
-          <TextField label="Email" className={clsx(classes.margin, classes.textField)} />
-          <TextField label="Handynummer" className={clsx(classes.margin, classes.textField)} />
+          <TextField value={values.org} onChange={handleChange('org')} required label="Betrieb" className={clsx(classes.margin, classes.textField)} />
+          <TextField value={values.email} onChange={handleChange('email')} label="Email" className={clsx(classes.margin, classes.textField)} />
+          <TextField value={values.phone} onChange={handleChange('phone')} label="Handynummer" className={clsx(classes.margin, classes.textField)} />
 
-          <Link to='/feedpage'>
-          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  component={Link} to="/feedpage">
+          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  onClick={handleCreateProfile}>
             FÄHIGKEITEN & INTERESSEN
           </Button>
-          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  component={Link} to="/feedpage">
+          <Button type="submit" variant="contained" color="primary" className={clsx(classes.margin)}  component={Link} to="/profile/skills">
             GEWERKSCHAFTSDATEN
           </Button>
-          </Link>
-        </form>
+        </div>
       </div>
   );
 }

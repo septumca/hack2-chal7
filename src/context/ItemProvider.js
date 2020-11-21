@@ -26,6 +26,7 @@ export default function ItemProvider({ children }) {
                 setUser
             }}
         >
+            {/* <pre>{JSON.stringify({ user })}</pre> */}
             {children}
         </ItemContext.Provider>
     );

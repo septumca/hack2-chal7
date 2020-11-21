@@ -36,10 +36,20 @@ export const createEvent = async (payload) => {
   return data;
 }
 
+export const getEvents = async (id=null) => {
+  const { data } = await axios.get(`${process.env.REACT_APP_BE_BASE}/accounts/${id}/events`);
+  return data;
+}
+
 export const login = async (name) => {
   const { status, data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts/login`, { name });
   if(status === 401) {
     return null;
   }
+  return data;
+}
+
+export const createProfile = async (userData) => {
+  const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts`, userData);
   return data;
 }
