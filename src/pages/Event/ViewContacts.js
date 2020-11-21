@@ -9,6 +9,8 @@ import { createAbility, createEvent, getEvent } from '../../services/services';
 import { useParams } from 'react-router-dom';
 import { useServiceCall } from '../../services/hooks';
 import ItemProvider from '../../context/ItemProvider';
+import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
+import EmailIcon from '@material-ui/icons/Email';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,48 +36,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const ViewContacts = ({ label='', name='', objContacts=[] }) => {
-  const callService = useServiceCall();
-  const { abilities } = useContext(ItemContext);
-//   const abilityObj = abilities !== null ? abilities.reduce((acc, cur) => ({ ...acc, [cur.ability_id]: cur }), {}) : {};
-  const { id } = useParams();
-  const [event, setEvent] = useState(null);
-  const classes = useStyles();
-  const { events } = useContext(ItemContext);
-
-  console.log("label name " , label, name );
-
-
+const ViewContacts = ({ style={}, label=null, info={} }) => {
   return (
-   
-    /* <Grid container spacing={0}>
-       <Grid item xs={12} style={{position: 'relative', height: '260px'}}>
-       <Typography>{label}</Typography>
-       <Typography>{name}</Typography>
-         {objContacts.map(con => {
-           console.log(con);
-          <Grid item xs={3}>
-           <Typography>{con.value}</Typography>
-           <Typography>{con.type}</Typography>
-          </Grid>
-         })}
-        </Grid>
-    </Grid> */
-    
-    <Grid item xs={11} style={{ paddingTop: '10px'}}>
-        <div><Typography variant="h6">Organisator</Typography></div>
-        <div><Typography>{ownerInfo.name}</Typography></div>
-        {Array.isArray(ownerInfo.contacts) && ownerInfo.contacts.map(con => {
-          return (<div style={{ display: 'inline-flex'}}>
+    <Grid item xs={11} style={{ ...style, paddingTop: '10px'}}>
+        {label && <div><Typography variant="h6">{label}</Typography></div>}
+        <div><Typography>{info.name}</Typography></div>
+        {Array.isArray(info.contacts) && info.contacts.map(con => {
+          return (<div key={con.type} style={{ display: 'inline-flex'}}>
             {con.type === 'Telefon' && <LocalPhoneIcon />}
             {con.type === 'Email' && <EmailIcon />}
-            <Typography style={{ paddingLeft: '10px' }}>{con.contact}</Typography>
+            <Typography style={{ paddingLeft: '10px' }}>{con.contact || con.value}</Typography>
           </div>);
         })}
-
       </Grid>
-      
-   
   );
 }
 

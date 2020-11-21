@@ -23,14 +23,8 @@ export default function AppRouter() {
     <Router>
       <div>
         <Switch>
-          <Route exact path='/items/:itemId'>
-            <Item />
-          </Route>
           <Route exact path='/feedpage'>
             <FeedPage />
-          </Route>
-          <Route exact path='/items'>
-            <Items />
           </Route>
           <Route exact path='/event/new'>
             <CreateEvent />

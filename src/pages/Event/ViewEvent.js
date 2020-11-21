@@ -9,8 +9,8 @@ import { createAbility, createEvent, getAccount, getEvent, register } from '../.
 import { useHistory, useParams } from 'react-router-dom';
 import { useServiceCall } from '../../services/hooks';
 import DoneIcon from '@material-ui/icons/Done';
-import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
-import EmailIcon from '@material-ui/icons/Email';
+import ViewContacts from './ViewContacts';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,6 +45,7 @@ const ViewEvent = () => {
   const classes = useStyles();
   const history = useHistory();
   const userIsAlreadyParticipating = event !== null && user !== null && Array.isArray(event.abilities) && event.abilities.some(ab => ab.accounts.some(ac => ac.account_id === user.account_id));
+  const userIsOwner = event !== null && user !== null && event.account_id === user.account_id;
   const [ownerInfo, setOwnerInfo] = useState(null);
   const [selectedAbilities, setSelectedAbilities] = useState([]);
 
@@ -88,10 +89,10 @@ const ViewEvent = () => {
     };
 
     const result = await callService(register(data));
-    history.push(`/events/${event.event_id}`);
+    history.push(`/event/${event.event_id}`);
   };
 
-  console.info('userIsAlreadyParticipating', userIsAlreadyParticipating, ownerInfo);
+  console.info('userIsAlreadyParticipating', event);
   return (
     <div>
     <TopBar label='Initiative' backLinkTo="/feedpage" />
@@ -109,7 +110,7 @@ const ViewEvent = () => {
         <Typography>{event.description}</Typography>
       </Grid>
       <Grid item xs={11}>
-        {event.abilities && event.abilities.map(ea => {
+        {!userIsOwner && event.abilities && event.abilities.map(ea => {
           if(abilityObj[ea.ability_id]) {
             return (<Chip
               key={ea.abilityevent_id}
@@ -124,11 +125,30 @@ const ViewEvent = () => {
           }
           return null;
         })}
+        {userIsOwner && event.abilities && event.abilities.map(ea => {
+          if(abilityObj[ea.ability_id]) {
+            const abilityName = abilityObj[ea.ability_id].value;
+            return (<div style={{display: 'flex'}} key={ea.abilityevent_id}>
+              <Chip
+                label={abilityName}
+                color="primary"
+                className={classes.abilityChips}
+                style={{
+                  marginTop: ea.accounts.length === 0 ? '8px': '34px',
+                  marginRight: '24px'
+                }}
+              />
+              <div>{ea.accounts.map(eaa => <ViewContacts style={{textAlign: 'left'}} info={eaa}/>)}</div>
+            </div>)
+          }
+
+          return null;
+        })}
       </Grid>
-      {!userIsAlreadyParticipating && <Grid item xs={11} style={{ paddingTop: '10px'}}>
+      {!userIsAlreadyParticipating && !userIsOwner && <Grid item xs={11} style={{ paddingTop: '10px'}}>
         <Button disabled={selectedAbilities.length === 0} type="submit" variant="contained" color="primary" onClick={handleSubmitParticipation}>Hilfe anbieten</Button>
       </Grid>}
-      {userIsAlreadyParticipating && ownerInfo !== null && <ViewContacts/>}
+      {userIsAlreadyParticipating && ownerInfo !== null && <ViewContacts label='Organisator' info={ownerInfo}/>}
     </Grid>
     </div>
   );
