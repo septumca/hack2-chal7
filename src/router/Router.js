@@ -10,14 +10,11 @@ import Home from '../pages/Home/Home';
 import Item from '../pages/Item/Item';
 import Items from '../pages/Items/Items';
 import Login from '../pages/Login/Login';
-import FeedPage from '../components/FeedPage';
-import TopAppBar from '../components/TopAppBar';
-
+import FeedPage from '../components/Feedpage/FeedPage';
 
 export default function AppRouter() {
   return (
     <>
-    <TopAppBar />
     <Router>
       <div>
         <Switch>
