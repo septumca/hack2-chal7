@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
@@ -43,7 +45,7 @@ function BottomAppBar({
                 <Grid item xs={6} className={classes.editorContainer}>
                     <AddAlertIcon className={classes.icon} ></AddAlertIcon>
                     <SettingsIcon className={classes.icon} ></SettingsIcon>
-                    <SearchIcon className={classes.icon}></SearchIcon>
+                    <SearchIcon className={classes.icon} component={Link} to="/profile"></SearchIcon>
                 </Grid>
             </Grid>
         </div>
