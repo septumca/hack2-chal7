@@ -58,3 +58,8 @@ export const createProfile = async (userData) => {
   const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/accounts`, userData);
   return data;
 }
+
+export const register = async (userData) => {
+  const { data } = await axios.post(`${process.env.REACT_APP_BE_BASE}/registrations`, userData);
+  return data;
+}
